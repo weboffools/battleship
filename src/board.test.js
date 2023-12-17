@@ -1,21 +1,55 @@
 const Gameboard = require('./board');
+const Ship = require('./ship');
 
-test('Ship placed at 0,0 -> 0,2', () => {
+test('Ship placed at 0,0', () => {
   const board = new Gameboard('player');
-  board.placeShip([0, 0], [0, 2], 'cruiser');
-  expect(board.ships[0].coords).toStrictEqual([[0, 0], [0, 2]]);
+  let x = 0;
+  let y = 0;
+  let name = 'cruiser';
+  board.placeShip(x, y, name, 'right');
+  expect(board.board[x][y].name).toBe('cruiser');
 });
 
-test('Receive an attack on ship at 0,0', () => {
+test('Is this a Ship?' , () => {
   const board = new Gameboard('player');
-  board.placeShip([0, 0], [0, 2], 'cruiser');
-  board.receiveAttack([0, 0]);
-  expect(board.ships[0].taken_hits).toBe(1);
+  let name = 'cruiser';
+  board.placeShip(0, 0, name, 'down');
+  expect(board.board[1][0].ship).toBeInstanceOf(Ship);
+});
+
+test('These are bad coordinates', () => {
+  const board = new Gameboard('player');
+  expect(() => board.placeShip(1, 11)).toThrow(RangeError);
+});
+  
+test('Receive an attack on front square of Ship', () => {
+  const board = new Gameboard('player');
+  board.placeShip(0, 1, 'cruiser', 'down');
+  board.receiveAttack(0, 1);
+  expect(board.board[0][1].taken_hits).toBe(1);
+});
+
+test('Receive an attack not on front square of Ship', () => {
+  const board = new Gameboard('player');
+  board.placeShip(0, 1, 'cruiser', 'down');
+  board.receiveAttack(1, 1);
+  expect(board.board[1][1].ship.taken_hits).toBe(1);
+});
+
+test('Receive an attack on square without a Ship', () => {
+  const board = new Gameboard('player');
+  board.placeShip(0, 1, 'cruiser', 'down');
+  board.receiveAttack(5, 5);
+  expect(board.misses).toContainEqual([5, 5]);
 });
 
 test('All ships sunk?', () => {
   const board = new Gameboard('player');
-  board.placeShip([3, 3], [5, 3], 'cruiser');
-  board.sunk = 5;
-  expect(board.reportAllSunk(board.ships)).toBeTruthy();
+  board.sunk = [
+    new Ship('battleship', 4),
+    new Ship('carrier', 5),
+    new Ship('cruiser', 3),
+    new Ship('submarine', 3),
+  ];
+  expect(board.reportAllSunk() === 4).toBeTruthy();
 });

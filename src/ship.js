@@ -3,10 +3,9 @@ class Ship {
   taken_hits = 0;
   sunk = 0;
 
-  constructor(name, length, coords) {
+  constructor(name, length) {
     this.name = name;
     this.length = length;
-    this.coords = coords;
   }
 
   hit() {
@@ -21,5 +20,3 @@ class Ship {
 }
 
 module.exports = Ship;
-
-
