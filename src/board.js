@@ -33,6 +33,8 @@ class Gameboard {
   placeShip(x, y, name, direction) {
     [x, y] = this.checkCoords(x, y);
     let length = this.ships[name];
+    let shipInTheWay = this.checkForShip(x, y, length, direction);
+    if (shipInTheWay instanceof Ship) return shipInTheWay;
     this.board[x][y] = new Ship(name, length);
     for (let i = 1; i < length; i++) {
       if (direction === 'right') {
@@ -91,6 +93,31 @@ class Gameboard {
     } else {
       throw new RangeError('x and y must be between 0 and 10');
     }
+  }
+
+  checkForShip(x, y, length, direction) {
+    let fore = this.board[x][y];
+    if (fore instanceof Ship) return fore;
+    for (let i = 1; i < length; i++) {
+      if (direction === 'right') {
+        if (this.board[x][y + i].ship instanceof Ship || this.board[x][y + i] instanceof Ship) {
+          if (this.board[x][y + i].ship instanceof Ship) {
+            return this.board[x][y + i].ship;
+          } else {
+            return this.board[x][y + i];
+          }
+        }
+      } else {
+        if (this.board[x + i][y].ship instanceof Ship || this.board[x + i][y] instanceof Ship) {
+          if (this.board[x + i][y].ship instanceof Ship) {
+            return this.board[x + i][y].ship;
+          } else {
+            return this.board[x + i][y];
+          }
+        }
+      }
+    }
+    return 0;
   }
 }
 

@@ -21,6 +21,13 @@ test('These are bad coordinates', () => {
   const board = new Gameboard('player');
   expect(() => board.placeShip(1, 11)).toThrow(RangeError);
 });
+
+test('There is a ship in the way!', () => {
+  const board = new Gameboard('player');
+  board.placeShip(1, 0, 'cruiser', 'right');
+  let second = board.placeShip(0, 0, 'battleship', 'down');
+  expect(second instanceof Ship).toBeTruthy();
+});
   
 test('Receive an attack on front square of Ship', () => {
   const board = new Gameboard('player');
