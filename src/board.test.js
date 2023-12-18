@@ -25,8 +25,7 @@ test('These are bad coordinates', () => {
 test('There is a ship in the way!', () => {
   const board = new Gameboard('player');
   board.placeShip(1, 0, 'cruiser', 'right');
-  let second = board.placeShip(0, 0, 'battleship', 'down');
-  expect(second instanceof Ship).toBeTruthy();
+  expect(board.placeShip(0, 1, 'cruiser', 'down')).toBeFalsy();
 });
   
 test('Receive an attack on front square of Ship', () => {

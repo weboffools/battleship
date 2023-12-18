@@ -1,7 +1,7 @@
 const Ship = require('./ship');
+const Player = require('./player');
 
 class Gameboard {
-
   misses = [];
   sunk = [];
 
@@ -27,26 +27,29 @@ class Gameboard {
     battleship: 4,
     cruiser: 3,
     submarine: 3,
-    destroyer: 2
+    destroyer: 2,
   };
 
   placeShip(x, y, name, direction) {
     [x, y] = this.checkCoords(x, y);
     let length = this.ships[name];
     let shipInTheWay = this.checkForShip(x, y, length, direction);
-    if (shipInTheWay instanceof Ship) return shipInTheWay;
+    if (shipInTheWay) return 0;
     this.board[x][y] = new Ship(name, length);
     for (let i = 1; i < length; i++) {
       if (direction === 'right') {
-        if (this.board[x][y + i].ship === null) {
+        let space = this.board[x][y + i];
+        if (space instanceof Space && space.ship === null) {
           this.board[x][y + i].ship = this.board[x][y];
         }
       } else {
-        if (this.board[x + i][y].ship === null) {
+        let space = this.board[x + i][y];
+        if (space instanceof Space && space.ship === null) {
           this.board[x + i][y].ship = this.board[x][y];
         }
       }
     }
+    return 1;
   }
 
   receiveAttack(x, y) {
@@ -88,8 +91,8 @@ class Gameboard {
   }
 
   checkCoords(x, y) {
-    if (x <= this.board.length && x >= 0 && y <= this.board.length && y >= 0) {
-      return [ x, y ];
+    if (x <= this.board.length - 1 && x >= 0 && y <= this.board.length - 1 && y >= 0) {
+      return [x, y];
     } else {
       throw new RangeError('x and y must be between 0 and 10');
     }
@@ -100,24 +103,34 @@ class Gameboard {
     if (fore instanceof Ship) return fore;
     for (let i = 1; i < length; i++) {
       if (direction === 'right') {
-        if (this.board[x][y + i].ship instanceof Ship || this.board[x][y + i] instanceof Ship) {
-          if (this.board[x][y + i].ship instanceof Ship) {
-            return this.board[x][y + i].ship;
-          } else {
-            return this.board[x][y + i];
-          }
+        let increment = y + i;
+        try {
+          this.checkCoords(x, increment);
+        } catch (e) {
+          return e;
+        }
+        let space = this.board[x][increment];
+        if (space instanceof Space && space.ship instanceof Ship) {
+          return space.ship;
+        } else if (space instanceof Ship) {
+          return space;
         }
       } else {
-        if (this.board[x + i][y].ship instanceof Ship || this.board[x + i][y] instanceof Ship) {
-          if (this.board[x + i][y].ship instanceof Ship) {
-            return this.board[x + i][y].ship;
-          } else {
-            return this.board[x + i][y];
-          }
+        let increment = x + i;
+        try {
+          this.checkCoords(increment, y);
+        } catch (e) {
+          return e;
+        }
+        let space = this.board[increment][y];
+        if (space instanceof Space && space.ship instanceof Ship) {
+          return space.ship;
+        } else if (space instanceof Ship) {
+          return space;
         }
       }
     }
-    return 0;
+    return;
   }
 }
 
@@ -129,4 +142,8 @@ class Space {
   }
 }
 
+let board = new Gameboard('computer');
+let player = new Player('computer');
+
+player.randomPlace(board);
 module.exports = Gameboard;

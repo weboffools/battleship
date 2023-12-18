@@ -9,3 +9,16 @@ test('Player takes a turn shooting at 0, 0', () => {
   player.takeTurn(board, 0, 0);
   expect(board.board[0][0].taken_hits).toBe(1);
 });
+
+test('Computer randomly places ships', () => {
+  const board = new Gameboard('computer');
+  const player = new Player('computer');
+  player.randomPlace(board);
+  let num = 0;
+  for (let row of board.board) {
+    for (let col of row) {
+      if (col instanceof Ship) num++;
+    }
+  }
+  expect(num).toBe(5);
+});
