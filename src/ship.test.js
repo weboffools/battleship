@@ -1,6 +1,6 @@
 const Ship = require('./ship');
 
-test('Ship takes one hit', () => {
+test('Ship takes a hit', () => {
   const ship = new Ship('battleship', 4);
   ship.hit();
   expect(ship.taken_hits).toBe(1);

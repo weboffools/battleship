@@ -22,3 +22,4 @@ test('Computer randomly places ships', () => {
   }
   expect(num).toBe(5);
 });
+

@@ -26,8 +26,13 @@ class Player {
     }
   }
 
-  randomTurn() {
-    return;
+  randomTurn(attempted, x, y) {
+    for (let attempt of attempted) {
+      if (String(attempt) === String([x, y])) {
+        return;
+      }
+    }
+    return [x, y];
   }
 }
 

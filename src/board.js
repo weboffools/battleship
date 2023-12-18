@@ -2,7 +2,7 @@ const Ship = require('./ship');
 const Player = require('./player');
 
 class Gameboard {
-  misses = [];
+  attempts = [];
   sunk = [];
 
   constructor(name) {
@@ -38,15 +38,9 @@ class Gameboard {
     this.board[x][y] = new Ship(name, length);
     for (let i = 1; i < length; i++) {
       if (direction === 'right') {
-        let space = this.board[x][y + i];
-        if (space instanceof Space && space.ship === null) {
-          this.board[x][y + i].ship = this.board[x][y];
-        }
+        this.board[x][y + i].ship = this.board[x][y];
       } else {
-        let space = this.board[x + i][y];
-        if (space instanceof Space && space.ship === null) {
-          this.board[x + i][y].ship = this.board[x][y];
-        }
+        this.board[x + i][y].ship = this.board[x][y];
       }
     }
     return 1;
@@ -57,9 +51,11 @@ class Gameboard {
 
     if (this.board[x][y] instanceof Ship) {
       this.board[x][y].hit();
+      this.attempts.push([x, y]);
     } else {
       if (this.board[x][y].ship !== null) {
         this.board[x][y].ship.hit();
+        this.attempts.push([x, y]);
       } else {
         this.trackMiss(x, y);
       }
@@ -83,7 +79,7 @@ class Gameboard {
   }
 
   trackMiss(x, y) {
-    this.misses.push([x, y]);
+    this.attempts.push([x, y]);
   }
 
   convertCoord(coord) {
@@ -91,7 +87,12 @@ class Gameboard {
   }
 
   checkCoords(x, y) {
-    if (x <= this.board.length - 1 && x >= 0 && y <= this.board.length - 1 && y >= 0) {
+    if (
+      x <= this.board.length - 1 &&
+      x >= 0 &&
+      y <= this.board.length - 1 &&
+      y >= 0
+    ) {
       return [x, y];
     } else {
       throw new RangeError('x and y must be between 0 and 10');

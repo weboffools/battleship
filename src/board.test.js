@@ -46,7 +46,7 @@ test('Receive an attack on square without a Ship', () => {
   const board = new Gameboard('player');
   board.placeShip(0, 1, 'cruiser', 'down');
   board.receiveAttack(5, 5);
-  expect(board.misses).toContainEqual([5, 5]);
+  expect(board.attempts).toContainEqual([5, 5]);
 });
 
 test('All ships sunk?', () => {
