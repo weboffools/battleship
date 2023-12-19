@@ -42,6 +42,7 @@ class DOM {
     titleArea.append(title);
     const compSidebar = this.makeElement('div', [['class', 'comp-sidebar']]);
     const fireControl = this.makeElement('div', [['class', 'fire-control']]);
+    const disclaimer = this.makeElement('div', [['class', 'disclaimer']], 'Whales are not to scale');
     const ships = this.makeElement('div', [['class', 'ship-catalog']]);
     const shipsTitle = this.makeElement('h2', [['class', 'ships-title']]);
     shipsTitle.textContent = 'WHALES';
@@ -103,13 +104,21 @@ class DOM {
     );
 
     fireControl.append(ships);
-    compSidebar.append(fireControl);
+    compSidebar.append(fireControl, disclaimer);
     const shipArea = this.makeElement('div', [['class', 'ship-area']]);
     const playerSidebar = this.makeElement('div', [
       ['class', 'player-sidebar'],
     ]);
     const hitPieces = this.makeElement('div', [['class', 'hit-pieces']]);
+    for (let i = 0; i < 54; i++) {
+      let piece = this.makeElement('div', [['class', 'hit-piece']]);
+      hitPieces.append(piece);
+    }
     const missPieces = this.makeElement('div', [['class', 'miss-pieces']]);
+    for (let i = 0; i < 120; i++) {
+      let piece = this.makeElement('div', [['class', 'miss-piece']]);
+      missPieces.append(piece);
+    }
     const quoteDiv = this.makeElement('div', [['class', 'quote-div']]);
     const quoteText = 'There is, one knows not what sweet mystery about this sea, whose gently awful stirrings seem to speak of some hidden soul beneath. -- Herman Melville';
     const quote = this.makeElement('h3', [['class', 'quote-text']], quoteText);
