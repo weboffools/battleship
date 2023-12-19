@@ -8,9 +8,14 @@ class DOM {
     const player = this.makeElement('div', [['class', 'player-area']]);
     const computer = this.makeElement('div', [['class', 'computer-area']]);
     const pBoardArea = this.makeElement('div', [['class', 'p-board-area']]);
+    const pBoardCaption = this.makeElement('div', [['class', 'p-board-caption']], 'Player Board');
+    
     const cBoardArea = this.makeElement('div', [['class', 'c-board-area']]);
+    const cBoardCaption = this.makeElement('div', [['class', 'c-board-caption']], 'Computer Board');
+
     const pBoard = this.makeElement('div', [['class', 'player-board']]);
     const cBoard = this.makeElement('div', [['class', 'comp-board']]);
+    cBoard.append(cBoardCaption);
     const pBoardHead = this.makeElement('div', [['class', 'p-board-head']]);
     for (let n of ['', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
       let num = this.makeElement('span', [['class', 'axis-num']], n);
@@ -31,7 +36,11 @@ class DOM {
       let num = this.makeElement('span', [['class', 'axis-num']], n);
       cBoardSide.append(num);
     }
-    pBoardArea.append(pBoardHead, pBoardSide, pBoard);
+    const controls = this.makeElement('div', [['class', 'control-area']]);
+    const startButton = this.makeElement('button', [['class', 'start-button']], 'START');
+    const controlForm = this.makeElement('form', [['id', 'control-form']]);
+    controls.append(startButton, controlForm);
+    pBoardArea.append(pBoardHead, pBoardSide, pBoard, pBoardCaption, controls);
     cBoardArea.append(cBoardHead, cBoardSide, cBoard);
     const titleArea = this.makeElement('div', [['class', 'title-area']]);
     const title = this.makeElement(
@@ -106,19 +115,51 @@ class DOM {
     fireControl.append(ships);
     compSidebar.append(fireControl, disclaimer);
     const shipArea = this.makeElement('div', [['class', 'ship-area']]);
+    const bluePiece = this.makeElement('div', [['class', 'ship blue-ship']]);
+    for (let i = 0; i < 5; i++) {
+      let dot = this.makeElement('div', [['class', 'ship-dot']]);
+      bluePiece.append(dot);
+    }
+
+    const rightPiece = this.makeElement('div', [['class', 'ship right-ship']]);
+    for (let i = 0; i < 4; i++) {
+      let dot = this.makeElement('div', [['class', 'ship-dot']]);
+      rightPiece.append(dot);
+    }
+
+    const spermPiece = this.makeElement('div', [['class', 'ship sperm-ship']]);
+    for (let i = 0; i < 3; i++) {
+      let dot = this.makeElement('div', [['class', 'ship-dot']]);
+      spermPiece.append(dot);
+    }
+
+    const humpbackPiece = this.makeElement('div', [['class', 'ship humpback-ship']]);
+    for (let i = 0; i < 3; i++) {
+      let dot = this.makeElement('div', [['class', 'ship-dot']]);
+      humpbackPiece.append(dot);
+    }
+
+    const orcaPiece = this.makeElement('div', [['class', 'ship orca-ship']]);
+    for (let i = 0; i < 2; i++) {
+      let dot = this.makeElement('div', [['class', 'ship-dot']]);
+      orcaPiece.append(dot);
+    }
+
+    shipArea.append(bluePiece, rightPiece, spermPiece, humpbackPiece, orcaPiece);
     const playerSidebar = this.makeElement('div', [
       ['class', 'player-sidebar'],
     ]);
     const hitPieces = this.makeElement('div', [['class', 'hit-pieces']]);
-    for (let i = 0; i < 54; i++) {
+    for (let i = 0; i < 36; i++) {
       let piece = this.makeElement('div', [['class', 'hit-piece']]);
       hitPieces.append(piece);
     }
     const missPieces = this.makeElement('div', [['class', 'miss-pieces']]);
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 72; i++) {
       let piece = this.makeElement('div', [['class', 'miss-piece']]);
       missPieces.append(piece);
     }
+    const noHarm = this.makeElement('div', [['class', 'no-harm']], 'No whales were harmed in the making of this game.');
     const quoteDiv = this.makeElement('div', [['class', 'quote-div']]);
     const quoteText = 'There is, one knows not what sweet mystery about this sea, whose gently awful stirrings seem to speak of some hidden soul beneath. -- Herman Melville';
     const quote = this.makeElement('h3', [['class', 'quote-text']], quoteText);
@@ -143,13 +184,14 @@ class DOM {
       [['class', 'copy-text']],
       copyrightText,
     );
+
     copyright.append(copyTextDiv, copyrightLink);
 
     playerSidebar.append(hitPieces, missPieces);
     computer.append(titleArea, cBoardArea, compSidebar);
     player.append(shipArea, pBoardArea, playerSidebar);
 
-    main.append(computer, player);
+    main.append(computer, player, noHarm);
     this.container.append(main, quoteDiv, copyright);
   }
 
