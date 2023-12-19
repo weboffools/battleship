@@ -12,9 +12,25 @@ class DOM {
     const pBoard = this.makeElement('div', [['class', 'player-board']]);
     const cBoard = this.makeElement('div', [['class', 'comp-board']]);
     const pBoardHead = this.makeElement('div', [['class', 'p-board-head']]);
+    for (let n of ['', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+      let num = this.makeElement('span', [['class', 'axis-num']], n);
+      pBoardHead.append(num);
+    }
     const cBoardHead = this.makeElement('div', [['class', 'c-board-head']]);
+    for (let n of ['', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+      let num = this.makeElement('span', [['class', 'axis-num']], n);
+      cBoardHead.append(num);
+    }
     const pBoardSide = this.makeElement('div', [['class', 'p-board-side']]);
+    for (let n of ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']) {
+      let num = this.makeElement('span', [['class', 'axis-num']], n);
+      pBoardSide.append(num);
+    }
     const cBoardSide = this.makeElement('div', [['class', 'c-board-side']]);
+    for (let n of ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']) {
+      let num = this.makeElement('span', [['class', 'axis-num']], n);
+      cBoardSide.append(num);
+    }
     pBoardArea.append(pBoardHead, pBoardSide, pBoard);
     cBoardArea.append(cBoardHead, cBoardSide, cBoard);
     const titleArea = this.makeElement('div', [['class', 'title-area']]);
