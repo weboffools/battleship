@@ -288,6 +288,63 @@ body {
   color: var(--title-white);
 }
 
+#control-form {
+  visibility: hidden;
+  display: grid;
+  padding: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(3, 33%);
+}
+
+#control-form input {
+  grid-column: 2 / 3;
+  font-family: inherit;
+  font-size: 16px;
+  padding: 2px;
+  width: 22px;
+  margin-left: 20px;
+}
+
+#control-form label {
+  justify-self: flex-end;
+  grid-column: 1 / 2;
+  font-size: 18px;
+  color: white;
+}
+
+.form-heading {
+  color: var(--title-white);
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+#letter-input-label {
+  grid-row: 2 / 3;
+}
+
+#input-letter {
+  grid-row: 2 / 3;
+}
+
+#number-input-label {
+  grid-row: 3 / 4;
+}
+
+#input-number {
+  grid-row: 3 / 4;
+}
+
+.fire-button {
+  font-family: inherit;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  background: var(--off-white);
+  color: var(--title-red);
+  grid-row: 2 / 4;
+  grid-column: 3 / 4;
+}
+
 .axis-num {
   display: grid;
   border: 2px groove var(--title-white);

@@ -39,6 +39,14 @@ class DOM {
     const controls = this.makeElement('div', [['class', 'control-area']]);
     const startButton = this.makeElement('button', [['class', 'start-button']], 'START');
     const controlForm = this.makeElement('form', [['id', 'control-form']]);
+    const formHeading = this.makeElement('div', [['class', 'form-heading']], 'Fire When Ready!');
+    const inputLetter = this.makeElement('input', [['name', 'input_letter'], ['id', 'input-letter'], ['type', 'text']]);
+    const inputLetterLabel = this.makeElement('label', [['id', 'letter-input-label'], ['for', 'input_letter']], 'Letter');
+    const inputNumber = this.makeElement('input', [['name', 'input_number'], ['id', 'input-number'], ['type', 'text']]);
+    const inputNumberLabel = this.makeElement('label', [['id', 'number-input-label'], ['for', 'input_number']], 'Number');
+    const fireButton = this.makeElement('button', [['class', 'fire-button']], 'FIRE!');
+    controlForm.append(formHeading, inputLetterLabel, inputLetter, inputNumberLabel, inputNumber, fireButton);
+
     controls.append(startButton, controlForm);
     pBoardArea.append(pBoardHead, pBoardSide, pBoard, pBoardCaption, controls);
     cBoardArea.append(cBoardHead, cBoardSide, cBoard);
@@ -61,7 +69,7 @@ class DOM {
       ['src', './images/blue-whale.jpg'],
     ]);
     const blueWhaleText = this.makeElement('p', [['class', 'whale-text']]);
-    blueWhaleText.textContent = 'BLUE 5 HITS';
+    blueWhaleText.textContent = 'BLUE -- 5 HITS';
     blueWhaleDiv.append(blueWhale, blueWhaleText);
     const rightWhaleDiv = this.makeElement('div', [['class', 'whale-div']]);
 
@@ -70,7 +78,7 @@ class DOM {
       ['src', './images/right-whale.jpg'],
     ]);
     const rightWhaleText = this.makeElement('p', [['class', 'whale-text']]);
-    rightWhaleText.textContent = 'RIGHT 4 HITS';
+    rightWhaleText.textContent = 'RIGHT -- 4 HITS';
     rightWhaleDiv.append(rightWhale, rightWhaleText);
 
     const spermWhaleDiv = this.makeElement('div', [['class', 'whale-div']]);
@@ -80,7 +88,7 @@ class DOM {
       ['src', './images/sperm-whale.jpg'],
     ]);
     const spermWhaleText = this.makeElement('p', [['class', 'whale-text']]);
-    spermWhaleText.textContent = 'SPERM 3 HITS';
+    spermWhaleText.textContent = 'SPERM -- 3 HITS';
     spermWhaleDiv.append(spermWhale, spermWhaleText);
 
     const humpbackDiv = this.makeElement('div', [['class', 'whale-div']]);
@@ -90,7 +98,7 @@ class DOM {
       ['src', './images/humpback.jpg'],
     ]);
     const humpbackText = this.makeElement('p', [['class', 'whale-text']]);
-    humpbackText.textContent = 'HUMPBACK 3 HITS';
+    humpbackText.textContent = 'HUMPBACK -- 3 HITS';
 
     humpbackDiv.append(humpback, humpbackText);
     const orcaDiv = this.makeElement('div', [['class', 'whale-div']]);
@@ -100,7 +108,7 @@ class DOM {
       ['src', './images/orca.jpg'],
     ]);
     const orcaText = this.makeElement('p', [['class', 'whale-text']]);
-    orcaText.textContent = 'ORCA 2 HITS';
+    orcaText.textContent = 'ORCA -- 2 HITS';
     orcaDiv.append(orca, orcaText);
 
     ships.append(
