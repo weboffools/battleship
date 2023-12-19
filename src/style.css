@@ -364,6 +364,10 @@ body {
 
 }
 
+.comp-board .grid-button:hover {
+  background: rgba(224, 225, 218, 0.5);
+}
+
 .row {
   display: grid;
   justify-items: center;
