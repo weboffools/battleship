@@ -86,15 +86,18 @@ class DOM {
       orcaDiv,
     );
 
-    const controls = this.makeElement('div', [['class', 'control-area']]);
     fireControl.append(ships);
-    compSidebar.append(fireControl, controls);
+    compSidebar.append(fireControl);
     const shipArea = this.makeElement('div', [['class', 'ship-area']]);
     const playerSidebar = this.makeElement('div', [
       ['class', 'player-sidebar'],
     ]);
     const hitPieces = this.makeElement('div', [['class', 'hit-pieces']]);
     const missPieces = this.makeElement('div', [['class', 'miss-pieces']]);
+    const quoteDiv = this.makeElement('div', [['class', 'quote-div']]);
+    const quoteText = 'There is, one knows not what sweet mystery about this sea, whose gently awful stirrings seem to speak of some hidden soul beneath. -- Herman Melville';
+    const quote = this.makeElement('h3', [['class', 'quote-text']], quoteText);
+    quoteDiv.append(quote);
     const copyright = this.makeElement('span', [['class', 'img-copyright']]);
     const copyrightLinkText =
       'https://ocean.si.edu/ocean-life/marine-mammals/what-largest-whale-cetacea-size-comparison-chart';
@@ -122,7 +125,7 @@ class DOM {
     player.append(shipArea, pBoardArea, playerSidebar);
 
     main.append(computer, player);
-    this.container.append(main, copyright);
+    this.container.append(main, quoteDiv, copyright);
   }
 
   makeElement(type, attributes, text) {
