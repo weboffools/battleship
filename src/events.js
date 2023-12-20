@@ -5,11 +5,13 @@ function Events() {
   const humpback = document.querySelector('#humpback-whale');
   const orca = document.querySelector('#orca-whale');
   const board = document.querySelector('#drop-target');
+  const pod = [blue, right, sperm, humpback, orca];
+  const button = document.querySelector('.grid-button');
 
   function dragStartHandler(e) {
     e.dataTransfer.setData('text/plain', e.target.id);
-    e.dataTransfer.setData('application/x-moz-node', e.target);
     e.dataTransfer.dropEffect = 'move';
+    e.dataTransfer.setDragImage(button, 25/2, 25/2);
   }
 
   function dragenterHandler(e) {
@@ -27,17 +29,24 @@ function Events() {
     e.target.appendChild(document.getElementById(data));
   }
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const group = [blue, right, sperm, humpback, orca];
+  function rotateWhale(e) {
+    e.currentTarget.classList.toggle('rotated-whale');
+  }
 
-    for (let item of group) {
-      item.addEventListener('dragstart', dragStartHandler);
+  window.addEventListener('DOMContentLoaded', () => {
+
+    for (let whale of pod) {
+      whale.addEventListener('dragstart', dragStartHandler);
     }
   });
 
   board.addEventListener('dragenter', dragenterHandler);
   board.addEventListener('dragover', dragoverHandler);
   board.addEventListener('drop', dropHandler);
+
+  for (let whale of pod) {
+    whale.addEventListener('click', rotateWhale);
+  }
 }
 
 module.exports = Events;
