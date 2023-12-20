@@ -7,6 +7,7 @@ function Events() {
   const board = document.querySelector('#drop-target');
   const pod = [blue, right, sperm, humpback, orca];
   const button = document.querySelector('.grid-button');
+  const start = document.querySelector('.start-button');
 
   function dragStartHandler(e) {
     e.dataTransfer.setData('text/plain', e.target.id);
@@ -33,6 +34,32 @@ function Events() {
     e.currentTarget.classList.toggle('rotated-whale');
   }
 
+  function getWhaleCoords(pod) {
+    for (let whale of pod) {
+      const id = whale.id;
+      const frontCoord = whale.parentElement.dataset.gridNumber;
+      const rect = whale.getBoundingClientRect();
+      const width = Math.floor(rect.width);
+      const height = Math.floor(rect.height);
+      const length = whale.dataset.length;
+      let coords = [];
+      const x = Number(frontCoord[1]);
+      const y = Number(frontCoord[3]);
+      coords.push([x, y]);
+      if (width > height) {
+        for (let i = 1; i < length; i++) {
+          let current = [x, y + i];
+          coords.push(current);
+        }
+      } else {
+        for (let i = 1; i < length; i++) {
+          let current = [x + i, y];
+          coords.push(current);
+        }
+      }
+      console.log(id, coords);
+    }
+  }
   window.addEventListener('DOMContentLoaded', () => {
 
     for (let whale of pod) {
@@ -47,6 +74,10 @@ function Events() {
   for (let whale of pod) {
     whale.addEventListener('click', rotateWhale);
   }
+
+  start.addEventListener('click', () => {
+    getWhaleCoords(pod);
+  });
 }
 
 module.exports = Events;

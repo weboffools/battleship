@@ -143,8 +143,8 @@ body {
 }
 
 .rotated-whale {
-  transform-origin: calc(25.27px / 2) calc(25.27px / 2);
-  transform: rotate(90deg);
+  transform-origin: calc(26.27px / 2) calc(25.27px / 2);
+  transform: rotate(-90deg);
 }
 
 .player-sidebar {

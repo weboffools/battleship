@@ -33,7 +33,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Battleschlep',
+      title: 'Battlewhale',
     }),
   ],
   optimization: {

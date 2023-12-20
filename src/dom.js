@@ -123,31 +123,31 @@ class DOM {
     fireControl.append(ships);
     compSidebar.append(fireControl, disclaimer);
     const shipArea = this.makeElement('div', [['class', 'ship-area']]);
-    const bluePiece = this.makeElement('div', [['class', 'ship blue-ship'], ['id', 'blue-whale'], ['draggable', 'true']]);
+    const bluePiece = this.makeElement('div', [['class', 'ship blue-ship'], ['id', 'blue-whale'], ['draggable', 'true'], ['data-length', '5']]);
     for (let i = 0; i < 5; i++) {
       let dot = this.makeElement('div', [['class', 'ship-dot']]);
       bluePiece.append(dot);
     }
 
-    const rightPiece = this.makeElement('div', [['class', 'ship right-ship'], ['id', 'right-whale'], ['draggable', 'true']]);
+    const rightPiece = this.makeElement('div', [['class', 'ship right-ship'], ['id', 'right-whale'], ['draggable', 'true'], ['data-length', '4']]);
     for (let i = 0; i < 4; i++) {
       let dot = this.makeElement('div', [['class', 'ship-dot']]);
       rightPiece.append(dot);
     }
 
-    const spermPiece = this.makeElement('div', [['class', 'ship sperm-ship'], ['id', 'sperm-whale'], ['draggable', 'true']]);
+    const spermPiece = this.makeElement('div', [['class', 'ship sperm-ship'], ['id', 'sperm-whale'], ['draggable', 'true'], ['data-length', '3']]);
     for (let i = 0; i < 3; i++) {
       let dot = this.makeElement('div', [['class', 'ship-dot']]);
       spermPiece.append(dot);
     }
 
-    const humpbackPiece = this.makeElement('div', [['class', 'ship humpback-ship'], ['id', 'humpback-whale'], ['draggable', 'true']]);
+    const humpbackPiece = this.makeElement('div', [['class', 'ship humpback-ship'], ['id', 'humpback-whale'], ['draggable', 'true'], ['data-length', '3']]);
     for (let i = 0; i < 3; i++) {
       let dot = this.makeElement('div', [['class', 'ship-dot']]);
       humpbackPiece.append(dot);
     }
 
-    const orcaPiece = this.makeElement('div', [['class', 'ship orca-ship'], ['id', 'orca-whale'], ['draggable', 'true']]);
+    const orcaPiece = this.makeElement('div', [['class', 'ship orca-ship'], ['id', 'orca-whale'], ['draggable', 'true'], ['data-length', '2']]);
     for (let i = 0; i < 2; i++) {
       let dot = this.makeElement('div', [['class', 'ship-dot']]);
       orcaPiece.append(dot);
@@ -218,7 +218,7 @@ class DOM {
       const rowDiv = this.makeElement('div', [['class', 'row']]);
       area.append(rowDiv);
       for (let col of row) {
-        const btn = this.makeElement('button', [['class', 'grid-button']]);
+        const btn = this.makeElement('button', [['class', 'grid-button'], ['data-grid-number', `[${board.board.indexOf(row)},${row.indexOf(col)}]`]]);
         rowDiv.append(btn);
       }
     }
