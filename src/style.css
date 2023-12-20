@@ -117,20 +117,20 @@ body {
 .blue-ship {
   background: rgb(132, 142, 151);
   width: calc(300px / 11 - 2px);
-  height: calc(300px / 11 * 5);
+  height: calc(300px / 11 * 5 + 8px);
 }
 
 .right-ship {
   background: rgb(79, 94, 125);
   width: calc(300px / 11 - 2px);
-  height: calc(300px / 11 * 4);
+  height: calc(300px / 11 * 4 + 6px);
 
 }
 
 .sperm-ship {
   background: rgb(168, 166, 144);
   width: calc(300px / 11 - 2px);
-  height: calc(300px / 11 * 3);
+  height: calc(300px / 11 * 3 + 4px);
 
 }
 
@@ -138,14 +138,14 @@ body {
   align-self: flex-end;
   background: rgb(124, 137, 153);
   width: calc(300px / 11 - 2px);
-  height: calc(300px / 11 * 3);
+  height: calc(300px / 11 * 3 + 4px);
 
 }
 
 .orca-ship {
   background: rgb(56, 63, 75);
   width: calc(300px / 11 - 2px);
-  height: calc(300px / 11 * 2);
+  height: calc(300px / 11 * 2 + 2px);
 
 }
 .player-sidebar {

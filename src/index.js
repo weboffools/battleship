@@ -1,6 +1,7 @@
 import './style.css';
 const Game = require('./game');
 const DOM = require('./dom');
+const Events = require('./events');
 
 const body = document.querySelector('body');
 const container = document.createElement('div');
@@ -11,6 +12,9 @@ const dom = new DOM(container);
 dom.init();
 const game = new Game(dom);
 game.init();
+
+Events();
+
 
 
 

@@ -13,7 +13,7 @@ class DOM {
     const cBoardArea = this.makeElement('div', [['class', 'c-board-area']]);
     const cBoardCaption = this.makeElement('div', [['class', 'c-board-caption']], 'Computer Board');
 
-    const pBoard = this.makeElement('div', [['class', 'player-board']]);
+    const pBoard = this.makeElement('div', [['class', 'player-board'],['id', 'drop-target']]);
     const cBoard = this.makeElement('div', [['class', 'comp-board']]);
     cBoard.append(cBoardCaption);
     const pBoardHead = this.makeElement('div', [['class', 'p-board-head']]);
