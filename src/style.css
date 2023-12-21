@@ -24,7 +24,7 @@ body {
 .container {
   height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 60px 60px;
+  grid-template-rows: 1fr 60px 60px 60px;
   justify-items: center;
   gap: 20px;
 }
@@ -390,18 +390,42 @@ body {
   color: red;
 }
 
+.start-text {
+  color: red;
+}
+
+.message-area {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  font-size: 24px;
+}
+
+.message-1 {
+  color: darkblue;
+}
+
+.message-2 {
+  color: seagreen;
+}
+
 .quote-div {
   display: flex;
-  width: 70%;
-  padding: 10px;
-  background: var(--off-white);
-  border-radius: 10px;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  background: rgba(229, 220, 203, 0.3);
 
+  border-radius: 10px;
 }
 
 .quote-div h3 {
-  text-align: justify;
-  font-size: 18px;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  font-family: cursive;
+  font-size: 22px;
   font-weight: lighter;
 }
 

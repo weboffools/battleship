@@ -19,6 +19,7 @@ class Game {
     this.dom.makeBoard(compBoard, this.cBoard);
     this.dom.makeBoard(playerBoard, this.pBoard);
 
+    computer.randomPlace(compBoard);
   }
 }
 

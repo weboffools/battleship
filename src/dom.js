@@ -39,13 +39,12 @@ class DOM {
     const controls = this.makeElement('div', [['class', 'control-area']]);
     const startButton = this.makeElement('button', [['class', 'start-button']], 'START');
     const controlForm = this.makeElement('form', [['id', 'control-form']]);
-    const formHeading = this.makeElement('div', [['class', 'form-heading']], 'Fire When Ready!');
     const inputLetter = this.makeElement('input', [['name', 'input_letter'], ['id', 'input-letter'], ['type', 'text']]);
     const inputLetterLabel = this.makeElement('label', [['id', 'letter-input-label'], ['for', 'input_letter']], 'Letter');
     const inputNumber = this.makeElement('input', [['name', 'input_number'], ['id', 'input-number'], ['type', 'text']]);
     const inputNumberLabel = this.makeElement('label', [['id', 'number-input-label'], ['for', 'input_number']], 'Number');
     const fireButton = this.makeElement('button', [['class', 'fire-button']], 'FIRE!');
-    controlForm.append(formHeading, inputLetterLabel, inputLetter, inputNumberLabel, inputNumber, fireButton);
+    controlForm.append(inputLetterLabel, inputLetter, inputNumberLabel, inputNumber, fireButton);
 
     controls.append(startButton, controlForm);
     pBoardArea.append(pBoardHead, pBoardSide, pBoard, pBoardCaption, controls);
@@ -168,6 +167,11 @@ class DOM {
       missPieces.append(piece);
     }
     const noHarm = this.makeElement('div', [['class', 'no-harm']], 'No whales were harmed in the making of this game.');
+    const messageArea = this.makeElement('div', [['class', 'message-area']]); 
+    const line1 = this.makeElement('span', [['class', 'message-1']], 'Drag your whales onto the Player Board and click START to start the game.');
+    const line2 = this.makeElement('span', [['class', 'message-2']], 'Click the whale to rotate it.');
+    messageArea.append(line1, line2);
+
     const quoteDiv = this.makeElement('div', [['class', 'quote-div']]);
     const quoteText = 'There is, one knows not what sweet mystery about this sea, whose gently awful stirrings seem to speak of some hidden soul beneath. -- Herman Melville';
     const quote = this.makeElement('h3', [['class', 'quote-text']], quoteText);
@@ -200,7 +204,7 @@ class DOM {
     player.append(shipArea, pBoardArea, playerSidebar);
 
     main.append(computer, player, noHarm);
-    this.container.append(main, quoteDiv, copyright);
+    this.container.append(main, messageArea, quoteDiv, copyright);
   }
 
   makeElement(type, attributes, text) {

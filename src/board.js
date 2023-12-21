@@ -23,11 +23,11 @@ class Gameboard {
   }
 
   ships = {
-    carrier: 5,
-    battleship: 4,
-    cruiser: 3,
-    submarine: 3,
-    destroyer: 2,
+    bluewhale: 5,
+    rightwhale: 4,
+    spermwhale: 3,
+    humpbackwhale: 3,
+    orcawhale: 2,
   };
 
   placeShip(x, y, name, direction) {
@@ -143,8 +143,4 @@ class Space {
   }
 }
 
-let board = new Gameboard('computer');
-let player = new Player('computer');
-
-player.randomPlace(board);
 module.exports = Gameboard;
