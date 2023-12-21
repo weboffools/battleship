@@ -9,4 +9,4 @@ Built as part of the JavaScript course on The Odin Project.
 
 Features drag and drop of whales and a basic computer player that randomly places ships and fires semi-intelligently.
 
-License under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0.</a>.
+Licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC 4.0</a>.
