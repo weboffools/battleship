@@ -34,6 +34,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Battlewhale',
+      favicon: './src/images/spear.png',
     }),
   ],
   optimization: {
