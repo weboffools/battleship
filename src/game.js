@@ -41,7 +41,7 @@ class Game {
       else {
         this.dom.changeMessage(
           'The game has now begun!',
-          'Click a square on the Computer Board or enter coordinates above and click FIRE'
+          'Click a square on the Computer Board to attack.'
         );
       }
     }

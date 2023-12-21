@@ -38,15 +38,7 @@ class DOM {
     }
     const controls = this.makeElement('div', [['class', 'control-area']]);
     const startButton = this.makeElement('button', [['class', 'start-button']], 'START');
-    const controlForm = this.makeElement('form', [['id', 'control-form']]);
-    const inputLetter = this.makeElement('input', [['name', 'input_letter'], ['id', 'input-letter'], ['type', 'text']]);
-    const inputLetterLabel = this.makeElement('label', [['id', 'letter-input-label'], ['for', 'input-letter']], 'Letter');
-    const inputNumber = this.makeElement('input', [['name', 'input_number'], ['id', 'input-number'], ['type', 'text']]);
-    const inputNumberLabel = this.makeElement('label', [['id', 'number-input-label'], ['for', 'input-number']], 'Number');
-    const fireButton = this.makeElement('button', [['class', 'fire-button']], 'FIRE!');
-    controlForm.append(inputLetterLabel, inputLetter, inputNumberLabel, inputNumber, fireButton);
-
-    controls.append(startButton, controlForm);
+    controls.append(startButton);
     pBoardArea.append(pBoardHead, pBoardSide, pBoard, pBoardCaption, controls);
     cBoardArea.append(cBoardHead, cBoardSide, cBoard);
     const titleArea = this.makeElement('div', [['class', 'title-area']]);
