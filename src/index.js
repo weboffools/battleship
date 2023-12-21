@@ -15,7 +15,7 @@ const game = new Game(dom);
 game.init();
 
 DragEvents();
-ClickEvents();
+ClickEvents(game);
 
 
 

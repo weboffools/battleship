@@ -227,6 +227,13 @@ class DOM {
       }
     }
   }
+
+  changeMessage(one, two) {
+    const line1 = document.querySelector('.message-1');
+    const line2 = document.querySelector('.message-2');
+    line1.textContent = one;
+    line2.textContent = two;
+  }
 }
 
 module.exports = DOM;

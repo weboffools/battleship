@@ -1,6 +1,6 @@
 const Gameboard = require('./board');
 const Player = require('./player');
-const DOM = require('./dom');
+const helpers = require('./helpers');
 
 class Game {
   constructor(dom) {
@@ -20,6 +20,16 @@ class Game {
     this.dom.makeBoard(playerBoard, this.pBoard);
 
     computer.randomPlace(compBoard);
+  }
+
+  start() {
+    try {
+      const whales = helpers.getWhales();
+      console.log(whales);
+      this.dom.changeMessage('Good work! Let the game begin!', '');
+    } catch(e) {
+      this.dom.changeMessage('', 'WHALES HAVE NOT BEEN PLACED!');
+    }
   }
 }
 
