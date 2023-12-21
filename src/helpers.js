@@ -57,3 +57,6 @@ exports.checkWhalesNotOverlapping = (whales) => {
   if (temp.length > set.size) return true;
 };
 
+exports.rotateWhale = (e) => {
+  e.currentTarget.classList.toggle('rotated-whale');
+};

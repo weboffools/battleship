@@ -2,7 +2,7 @@ import './style.css';
 const Game = require('./game');
 const DOM = require('./dom');
 const DragEvents = require('./drag');
-const ClickEvents = require('./click');
+const click = require('./click');
 
 const body = document.querySelector('body');
 const container = document.createElement('div');
@@ -15,7 +15,10 @@ const game = new Game(dom);
 game.init();
 
 DragEvents();
-ClickEvents(game);
+
+click.startGame(game);
+click.whaleClick();
+
 
 
 
