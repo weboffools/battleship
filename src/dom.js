@@ -40,9 +40,9 @@ class DOM {
     const startButton = this.makeElement('button', [['class', 'start-button']], 'START');
     const controlForm = this.makeElement('form', [['id', 'control-form']]);
     const inputLetter = this.makeElement('input', [['name', 'input_letter'], ['id', 'input-letter'], ['type', 'text']]);
-    const inputLetterLabel = this.makeElement('label', [['id', 'letter-input-label'], ['for', 'input_letter']], 'Letter');
+    const inputLetterLabel = this.makeElement('label', [['id', 'letter-input-label'], ['for', 'input-letter']], 'Letter');
     const inputNumber = this.makeElement('input', [['name', 'input_number'], ['id', 'input-number'], ['type', 'text']]);
-    const inputNumberLabel = this.makeElement('label', [['id', 'number-input-label'], ['for', 'input_number']], 'Number');
+    const inputNumberLabel = this.makeElement('label', [['id', 'number-input-label'], ['for', 'input-number']], 'Number');
     const fireButton = this.makeElement('button', [['class', 'fire-button']], 'FIRE!');
     controlForm.append(inputLetterLabel, inputLetter, inputNumberLabel, inputNumber, fireButton);
 
@@ -64,7 +64,7 @@ class DOM {
     shipsTitle.textContent = 'WHALES';
     const blueWhaleDiv = this.makeElement('div', [['class', 'whale-div']]);
     const blueWhale = this.makeElement('img', [
-      ['class', 'whale'],
+      ['class', 'whale blue-whale-img'],
       ['src', './images/blue-whale.jpg'],
     ]);
     const blueWhaleText = this.makeElement('p', [['class', 'whale-text']]);
@@ -234,6 +234,7 @@ class DOM {
     line1.textContent = one;
     line2.textContent = two;
   }
+
 }
 
 module.exports = DOM;

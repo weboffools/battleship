@@ -33,3 +33,27 @@ exports.getWhales = () => {
   }
   return whales;
 };
+
+exports.checkWhalesOnBoard = (whales) => {
+  for (let whale of whales) {
+    for (let pair of whale.coords) {
+      const x = pair[0];
+      const y = pair[1];
+      if (x > 9 || x < 0 || y > 9 || y < 0) {
+        return true;
+      }
+    }
+  }
+};
+
+exports.checkWhalesNotOverlapping = (whales) => {
+  let temp = [];
+  for (let whale of whales) {
+    for (let pair of whale.coords) {
+      temp.push(pair.join(''));
+    }
+  }
+  let set = new Set(temp);
+  if (temp.length > set.size) return true;
+};
+

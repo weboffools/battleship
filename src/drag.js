@@ -27,6 +27,9 @@ function DragEvents() {
     if (e.target.className === 'grid-button') {
       e.target.appendChild(document.getElementById(data));
     } 
+    else if (e.target.className === 'row') {
+      e.target.firstChild.appendChild(document.getElementById(data));
+    }  
   }
 
   window.addEventListener('DOMContentLoaded', () => {
