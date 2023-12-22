@@ -1,12 +1,26 @@
+const click = require('./click');
 
 class Player {
+
+  attempts = [];
 
   constructor(name) {
     this.name = name;
   }
 
   takeTurn(board, x, y, dom) {
-    board.receiveAttack(x, y, dom);
+    if (board.name === 'Player') {
+      board.receiveAttack(x, y, dom);
+      this.attempts.push([x, y]);
+    } else {
+      [x, y] = this.randomTurn(this.attempts, x, y);
+      board.receiveAttack(x, y, dom);
+      this.attempts.push([x, y]);
+      return new Promise((resolve, reject) => {
+        click.subseqGridClicks(resolve);
+      });
+    }
+
   }
 
   genRandomNum(n) {
