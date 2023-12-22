@@ -24,12 +24,9 @@ function DragEvents() {
   function dropHandler(e) {
     e.preventDefault();
     const data = e.dataTransfer.getData('text/plain');
-    if (e.target.className === 'grid-button') {
+    if (e.target.className === 'grid-button player-square') {
       e.target.appendChild(document.getElementById(data));
     } 
-    else if (e.target.className === 'row') {
-      e.target.firstChild.appendChild(document.getElementById(data));
-    }  
   }
 
   window.addEventListener('DOMContentLoaded', () => {

@@ -48,18 +48,25 @@ class Gameboard {
     return 1;
   }
 
-  receiveAttack(x, y) {
+  receiveAttack(x, y, dom) {
     [x, y] = this.checkCoords(x, y);
 
     if (this.board[x][y] instanceof Ship) {
       this.board[x][y].hit();
       this.attempts.push([x, y]);
+      let button = helpers.getButton(x, y, this.name.toLowerCase());
+      dom.appendDot(button, 'hit');
     } else {
       if (this.board[x][y].ship !== null) {
         this.board[x][y].ship.hit();
         this.attempts.push([x, y]);
+        let button = helpers.getButton(x, y, this.name.toLowerCase());
+        dom.appendDot(button, 'hit');
       } else {
         this.trackMiss(x, y);
+        let button = helpers.getButton(x, y, this.name.toLowerCase());
+        dom.appendDot(button, 'miss');
+
       }
     }
   }

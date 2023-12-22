@@ -210,11 +210,12 @@ class DOM {
   }
 
   makeBoard(board, area) {
+    const boardSquare = `${board.name.toLowerCase()}-square`;
     for (let row of board.board) {
       const rowDiv = this.makeElement('div', [['class', 'row']]);
       area.append(rowDiv);
       for (let col of row) {
-        const btn = this.makeElement('button', [['class', 'grid-button'], ['data-grid-number', `[${board.board.indexOf(row)},${row.indexOf(col)}]`]]);
+        const btn = this.makeElement('button', [['class', `grid-button ${boardSquare}`], ['data-grid-number', `[${board.board.indexOf(row)},${row.indexOf(col)}]`]]);
         rowDiv.append(btn);
       }
     }
@@ -227,6 +228,11 @@ class DOM {
     line2.textContent = two;
   }
 
+  appendDot(element, type) {
+    const className = `${type}-piece`;
+    const piece = this.makeElement('div', [['class', className]]);
+    element.appendChild(piece);
+  }
 }
 
 module.exports = DOM;

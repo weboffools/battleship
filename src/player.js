@@ -1,12 +1,12 @@
+
 class Player {
-  attempts = [];
 
   constructor(name) {
     this.name = name;
   }
 
-  takeTurn(board, x, y) {
-    board.receiveAttack(x, y);
+  takeTurn(board, x, y, dom) {
+    board.receiveAttack(x, y, dom);
   }
 
   genRandomNum(n) {

@@ -67,3 +67,33 @@ exports.checkWhalesNotOverlapping = (whales) => {
 exports.rotateWhale = (e) => {
   e.currentTarget.classList.toggle('rotated-whale');
 };
+
+const getDirection = (coords) => {
+  let xs = [];
+  let ys = [];
+  for (let pair of coords) {
+    xs.push(pair[0]);
+    ys.push(pair[1]);
+  }
+  let xSet = new Set(xs);
+  let ySet = new Set(ys);
+
+  return (xSet.size > ySet.size) ? 'down' : 'right';
+};
+
+exports.placePlayerWhales = (board, whales) => {
+  for (let whale of whales) {
+    let direction = getDirection(whale.coords);
+    let name = whale.name;
+    let x = whale.coords[0][0];
+    let y = whale.coords[0][1];
+    board.placeShip(x, y, name, direction);
+  }
+};
+
+exports.getButton = (x, y, player) => {
+  let coord = String([x,y]);
+  console.log(coord);
+  let button = document.querySelector(`button[data-grid-number='[${coord}]'].${player}-square`);
+  return button;
+};
