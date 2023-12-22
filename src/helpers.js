@@ -34,6 +34,13 @@ exports.getWhales = () => {
   return whales;
 };
 
+exports.parseCoordString = (string) => {
+  const x = Number(string[1]);
+  const y = Number(string[3]);
+
+  return [x, y];
+};
+
 exports.checkWhalesOnBoard = (whales) => {
   for (let whale of whales) {
     for (let pair of whale.coords) {
