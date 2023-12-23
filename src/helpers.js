@@ -93,7 +93,6 @@ exports.placePlayerWhales = (board, whales) => {
 
 exports.getButton = (x, y, player) => {
   let coord = String([x,y]);
-  console.log(coord);
   let button = document.querySelector(`button[data-grid-number='[${coord}]'].${player}-square`);
   return button;
 };

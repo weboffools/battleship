@@ -58,7 +58,7 @@ class Game {
 
   loop(cboard, pboard, plyr, comp, x, y, dom) {
     plyr.takeTurn(cboard, x, y, dom);
-    comp.takeTurn(pboard, x, y, dom);
+    setTimeout(() => comp.takeTurn(pboard, x, y, dom), 800);
   }
 }
 

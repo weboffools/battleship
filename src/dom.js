@@ -231,7 +231,11 @@ class DOM {
   appendDot(element, type) {
     const className = `${type}-piece`;
     const piece = this.makeElement('div', [['class', className]]);
-    element.appendChild(piece);
+    if (element.firstChild && element.firstChild.classList.contains('ship')) {
+      element.firstChild.firstChild.append(piece);
+    } else {
+      element.appendChild(piece);
+    }
   }
 }
 
