@@ -53,13 +53,17 @@ class Gameboard {
     const lowerName = this.name.toLowerCase();
 
     if (this.board[x][y] instanceof Ship) {
+      let ship = this.board[x][y];
       this.board[x][y].hit();
+      if (ship.isSunk()) this.sunk.push(ship);
       this.attempts.push([x, y]);
       let button = helpers.getButton(x, y, lowerName);
       dom.appendDot(button, 'hit');
     } else {
       if (this.board[x][y].ship !== null) {
+        let ship = this.board[x][y].ship;
         this.board[x][y].ship.hit();
+        if (ship.isSunk()) this.sunk.push(ship);
         this.attempts.push([x, y]);
         let button = helpers.getButton(x, y, lowerName);
         dom.appendDot(button, 'hit');

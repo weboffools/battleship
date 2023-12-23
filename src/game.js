@@ -51,14 +51,33 @@ class Game {
         click.unWhaleClick();
         helpers.placePlayerWhales(this.playerBoard, whales);
 
-        click.addGridClicks(this.compBoard, this.playerBoard, this.player, this.computer, this.dom, this.loop);
+        click.addGridClicks(this.compBoard, this.playerBoard, this.player, this.computer, this.dom, this.loop, this.checkForWin);
       }
     }
   }
 
-  loop(cboard, pboard, plyr, comp, x, y, dom) {
-    plyr.takeTurn(cboard, x, y, dom);
-    setTimeout(() => comp.takeTurn(pboard, x, y, dom), 800);
+  loop(cboard, pboard, plyr, comp, x, y, dom, win) {
+    let winner = win(pboard, cboard);
+    if (winner) {
+      dom.changeMessage(`${winner} wins!`, '');
+    } else {
+      plyr.takeTurn(cboard, x, y, dom);
+      setTimeout(() => comp.takeTurn(pboard, x, y, dom), 800);
+    }
+  }
+
+  checkForWin(pboard, cboard) {
+    let p = (pboard.reportAllSunk() === 5) ? 1 : 0; 
+    let c = (cboard.reportAllSunk() === 5) ? 1 : 0; 
+
+    if (p === 1) {
+      return 'Player';
+    }
+    else if (c === 1) {
+      return 'Computer';
+    } else {
+      return false;
+    }
   }
 }
 
