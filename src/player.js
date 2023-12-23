@@ -9,10 +9,12 @@ class Player {
   }
 
   takeTurn(board, x, y, dom) {
-    if (board.name === 'Player') {
+    if (board.name === 'Computer') {
       board.receiveAttack(x, y, dom);
       this.attempts.push([x, y]);
     } else {
+      x = this.genRandomNum(9);
+      y = this.genRandomNum(9);
       [x, y] = this.randomTurn(this.attempts, x, y);
       board.receiveAttack(x, y, dom);
       this.attempts.push([x, y]);
@@ -40,7 +42,9 @@ class Player {
   randomTurn(attempted, x, y) {
     for (let attempt of attempted) {
       if (String(attempt) === String([x, y])) {
-        return;
+        x = this.genRandomNum(9);
+        y = this.genRandomNum(9);
+        [x, y] = this.randomTurn(attempted, x, y);
       }
     }
     return [x, y];
