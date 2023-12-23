@@ -60,6 +60,7 @@ class Game {
     let winner = win(pboard, cboard);
     if (winner) {
       dom.changeMessage(`${winner} wins!`, '');
+      click.removeGridClicks(cboard);
     } else {
       plyr.takeTurn(cboard, x, y, dom);
       setTimeout(() => comp.takeTurn(pboard, x, y, dom), 800);

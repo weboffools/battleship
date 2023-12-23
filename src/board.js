@@ -1,6 +1,4 @@
 const Ship = require('./ship');
-const Player = require('./player');
-const dom = require('./dom');
 const helpers = require('./helpers');
 
 class Gameboard {
