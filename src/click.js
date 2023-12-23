@@ -37,14 +37,14 @@ exports.unWhaleClick = () => {
   }
 };
 
-exports.addGridClicks = (player, board, dom) => {
+exports.addGridClicks = (cboard, pboard, player, comp, dom, loop) => {
   const squares = document.querySelectorAll('.computer-square');
   squares.forEach((square) => {
     square.addEventListener(
       'click',
       (e) => {
         const [x, y] = helpers.parseCoordString(e.target.dataset.gridNumber);
-        player.takeTurn(board, x, y, dom);
+        loop(cboard, pboard, player, comp, x, y, dom);
       },
       { once: true },
     );

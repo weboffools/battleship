@@ -16,9 +16,6 @@ class Player {
       [x, y] = this.randomTurn(this.attempts, x, y);
       board.receiveAttack(x, y, dom);
       this.attempts.push([x, y]);
-      return new Promise((resolve, reject) => {
-        click.subseqGridClicks(resolve);
-      });
     }
 
   }

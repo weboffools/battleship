@@ -50,14 +50,16 @@ class Game {
         RemoveDraggable();
         click.unWhaleClick();
         helpers.placePlayerWhales(this.playerBoard, whales);
-        click.addGridClicks(this.player, this.compBoard, this.dom);
+
+        click.addGridClicks(this.compBoard, this.playerBoard, this.player, this.computer, this.dom, this.loop);
       }
     }
   }
 
-  loop() {
+  loop(cboard, pboard, plyr, comp, x, y, dom) {
+    plyr.takeTurn(cboard, x, y, dom);
+    comp.takeTurn(pboard, x, y, dom);
   }
-
 }
 
 module.exports = Game;
