@@ -5,10 +5,22 @@ exports.startGame = (game) => {
   start.addEventListener(
     'click',
     () => {
+      if (helpers.checkPlayerBoard(game.dom)) {
+        game.start();
+        addGridClicks(game);
+      }
+    },
+  );
+};
+
+exports.removeStartGame = (game) => {
+  const start = document.querySelector('.start-button');
+  start.removeEventListener(
+    'click',
+    () => {
       game.start();
       addGridClicks(game);
     },
-    { once: true },
   );
 };
 

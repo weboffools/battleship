@@ -1,4 +1,4 @@
-exports.getWhales = () => {
+const getWhales = () => {
   const blue = document.querySelector('#blue-whale');
   const right = document.querySelector('#right-whale');
   const sperm = document.querySelector('#sperm-whale');
@@ -41,7 +41,7 @@ exports.parseCoordString = (string) => {
   return [x, y];
 };
 
-exports.checkWhalesOnBoard = (whales) => {
+const checkWhalesOnBoard = (whales) => {
   for (let whale of whales) {
     for (let pair of whale.coords) {
       const x = pair[0];
@@ -53,7 +53,7 @@ exports.checkWhalesOnBoard = (whales) => {
   }
 };
 
-exports.checkWhalesNotOverlapping = (whales) => {
+const checkWhalesNotOverlapping = (whales) => {
   let temp = [];
   for (let whale of whales) {
     for (let pair of whale.coords) {
@@ -78,10 +78,11 @@ const getDirection = (coords) => {
   let xSet = new Set(xs);
   let ySet = new Set(ys);
 
-  return (xSet.size > ySet.size) ? 'down' : 'right';
+  return xSet.size > ySet.size ? 'down' : 'right';
 };
 
-exports.placePlayerWhales = (board, whales) => {
+exports.placePlayerWhales = (board) => {
+  let whales = getWhales();
   for (let whale of whales) {
     let direction = getDirection(whale.coords);
     let name = whale.name;
@@ -92,7 +93,41 @@ exports.placePlayerWhales = (board, whales) => {
 };
 
 exports.getButton = (x, y, player) => {
-  let coord = String([x,y]);
-  let button = document.querySelector(`button[data-grid-number='[${coord}]'].${player}-square`);
+  let coord = String([x, y]);
+  let button = document.querySelector(
+    `button[data-grid-number='[${coord}]'].${player}-square`,
+  );
   return button;
+};
+
+exports.checkPlayerBoard = (dom) => {
+  const shipArea = document.querySelector('.ship-area');
+  if (shipArea.children.length > 0) {
+    dom.changeMessage(
+      'All your whales have not been placed!',
+      'Please place all whales before clicking START.',
+    );
+    return;
+  } else {
+    let whales = getWhales();
+    if (checkWhalesOnBoard(whales)) {
+      dom.changeMessage(
+        'Some of your whales are off the board.',
+        'Please rearrange your whales!',
+      );
+      return;
+    } else if (checkWhalesNotOverlapping(whales)) {
+      dom.changeMessage(
+        'One or more of your whales are overlapping.',
+        'Please rearrange your whales!',
+      );
+      return;
+    } else {
+      dom.changeMessage(
+        'The game has now begun!',
+        'Click a square on the Computer Board to attack.',
+      );
+      return true;
+    }
+  }
 };

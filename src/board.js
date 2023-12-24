@@ -1,5 +1,4 @@
 const Ship = require('./ship');
-const helpers = require('./helpers');
 
 class Gameboard {
   attempts = [];

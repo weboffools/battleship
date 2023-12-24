@@ -23,35 +23,9 @@ class Game {
   }
 
   start() {
-    const shipArea = document.querySelector('.ship-area');
-    if (shipArea.children.length > 0) {
-      this.dom.changeMessage(
-        'All your whales have not been placed!',
-        'Please place all whales before clicking START.',
-      );
-    } else {
-      let whales = helpers.getWhales();
-      if (helpers.checkWhalesOnBoard(whales)) {
-        this.dom.changeMessage(
-          'Some of your whales are off the board.',
-          'Please rearrange your whales!',
-        );
-      } else if (helpers.checkWhalesNotOverlapping(whales)) {
-        this.dom.changeMessage(
-          'One or more of your whales are overlapping.',
-          'Please rearrange your whales!',
-        );
-      } else {
-        this.dom.changeMessage(
-          'The game has now begun!',
-          'Click a square on the Computer Board to attack.',
-        );
-        whales = helpers.getWhales();
-        RemoveDraggable();
-        click.unWhaleClick();
-        helpers.placePlayerWhales(this.playerBoard, whales);
-      }
-    }
+    RemoveDraggable();
+    click.unWhaleClick();
+    helpers.placePlayerWhales(this.playerBoard);
   }
 
   loop(x, y) {
