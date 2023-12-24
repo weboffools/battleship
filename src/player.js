@@ -1,5 +1,3 @@
-const click = require('./click');
-
 class Player {
 
   attempts = [];
@@ -19,7 +17,6 @@ class Player {
       board.receiveAttack(x, y, dom);
       this.attempts.push([x, y]);
     }
-
   }
 
   genRandomNum(n) {

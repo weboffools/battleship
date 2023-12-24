@@ -1,3 +1,9 @@
+const blueW = require('./images/blue-whale.jpg');
+const rightW = require('./images/right-whale.jpg');
+const spermW = require('./images/sperm-whale.jpg');
+const humpW = require('./images/humpback.jpg');
+const orcaW = require('./images/orca.jpg');
+
 class DOM {
   constructor(container) {
     this.container = container;
@@ -57,7 +63,7 @@ class DOM {
     const blueWhaleDiv = this.makeElement('div', [['class', 'whale-div']]);
     const blueWhale = this.makeElement('img', [
       ['class', 'whale blue-whale-img'],
-      ['src', './images/blue-whale.jpg'],
+      ['src', blueW],
     ]);
     const blueWhaleText = this.makeElement('p', [['class', 'whale-text']]);
     blueWhaleText.textContent = 'BLUE -- 5 HITS';
@@ -66,7 +72,7 @@ class DOM {
 
     const rightWhale = this.makeElement('img', [
       ['class', 'whale'],
-      ['src', './images/right-whale.jpg'],
+      ['src', rightW],
     ]);
     const rightWhaleText = this.makeElement('p', [['class', 'whale-text']]);
     rightWhaleText.textContent = 'RIGHT -- 4 HITS';
@@ -76,7 +82,7 @@ class DOM {
 
     const spermWhale = this.makeElement('img', [
       ['class', 'whale'],
-      ['src', './images/sperm-whale.jpg'],
+      ['src', spermW],
     ]);
     const spermWhaleText = this.makeElement('p', [['class', 'whale-text']]);
     spermWhaleText.textContent = 'SPERM -- 3 HITS';
@@ -86,7 +92,7 @@ class DOM {
 
     const humpback = this.makeElement('img', [
       ['class', 'whale'],
-      ['src', './images/humpback.jpg'],
+      ['src', humpW],
     ]);
     const humpbackText = this.makeElement('p', [['class', 'whale-text']]);
     humpbackText.textContent = 'HUMPBACK -- 3 HITS';
@@ -96,7 +102,7 @@ class DOM {
 
     const orca = this.makeElement('img', [
       ['class', 'whale'],
-      ['src', './images/orca.jpg'],
+      ['src', orcaW],
     ]);
     const orcaText = this.makeElement('p', [['class', 'whale-text']]);
     orcaText.textContent = 'ORCA -- 2 HITS';

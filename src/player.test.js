@@ -23,7 +23,7 @@ test('Computer randomly places ships', () => {
   expect(num).toBe(5);
 });
 
-test.only('Computer turn ignores previously guessed square', () => {
+test('Computer turn ignores previously guessed square', () => {
   const player = new Player('computer');
   const attempts = [[0, 0], [2, 0], [3, 4]];
   let [x, y] = player.randomTurn(attempts, 2, 0);

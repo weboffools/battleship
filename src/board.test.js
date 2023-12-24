@@ -1,6 +1,5 @@
 const Gameboard = require('./board');
 const Ship = require('./ship');
-const dom = require('./dom');
 
 test('Ship placed at 0,0', () => {
   const board = new Gameboard('player');
@@ -32,21 +31,21 @@ test('There is a ship in the way!', () => {
 test('Receive an attack on front square of Ship', () => {
   const board = new Gameboard('player');
   board.placeShip(0, 1, 'spermwhale', 'down');
-  board.receiveAttack(0, 1, dom);
+  board.receiveAttack(0, 1);
   expect(board.board[0][1].taken_hits).toBe(1);
 });
 
 test('Receive an attack not on front square of Ship', () => {
   const board = new Gameboard('player');
   board.placeShip(0, 1, 'spermwhale', 'down');
-  board.receiveAttack(1, 1, dom);
+  board.receiveAttack(1, 1);
   expect(board.board[1][1].ship.taken_hits).toBe(1);
 });
 
 test('Receive an attack on square without a Ship', () => {
   const board = new Gameboard('player');
   board.placeShip(0, 1, 'spermwhale', 'down');
-  board.receiveAttack(5, 5, dom);
+  board.receiveAttack(5, 5);
   expect(board.attempts).toContainEqual([5, 5]);
 });
 

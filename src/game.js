@@ -61,7 +61,7 @@ class Game {
       click.removeGridClicks(this.compBoard);
     } else {
       this.player.takeTurn(this.compBoard, x, y, this.dom);
-      setTimeout(() => this.computer.takeTurn(this.playerBoard, x, y, this.dom), 800);
+      this.computer.takeTurn(this.playerBoard, x, y, this.dom);
     }
   }
 
