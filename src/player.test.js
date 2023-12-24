@@ -3,9 +3,9 @@ const Gameboard = require('./board');
 const Ship = require('./ship');
 
 test('Player takes a turn shooting at 0, 0', () => {
-  const board = new Gameboard('computer');
+  const board = new Gameboard('Computer');
   const player = new Player('eliot');
-  board.placeShip(0, 0, 'cruiser', 'right');
+  board.placeShip(0, 0, 'spermwhale', 'right');
   player.takeTurn(board, 0, 0);
   expect(board.board[0][0].taken_hits).toBe(1);
 });
