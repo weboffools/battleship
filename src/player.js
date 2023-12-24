@@ -7,17 +7,19 @@ class Player {
   }
 
   takeTurn(board, x, y) {
+    let outcome;
+    let sunk;
     if (board.name === 'Computer') {
-      const outcome = board.receiveAttack(x, y);
+      [ outcome, sunk ] = board.receiveAttack(x, y);
       this.attempts.push([x, y]);
-      return outcome;
+      return [ outcome, sunk ];
     } else {
       x = this.genRandomNum(10);
       y = this.genRandomNum(10);
       [x, y] = this.randomTurn(this.attempts, x, y);
-      const outcome = board.receiveAttack(x, y);
+      [ outcome, sunk ] = board.receiveAttack(x, y);
       this.attempts.push([x, y]);
-      return [ outcome, x, y ];
+      return [ outcome, sunk, x, y ];
     }
   }
 

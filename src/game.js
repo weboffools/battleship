@@ -55,29 +55,32 @@ class Game {
   }
 
   loop(x, y) {
-    let winner = this.checkForWin(this.playerBoard, this.compBoard);
     let outcome;
+    let sunk = '';
+    [outcome, sunk] = this.player.takeTurn(this.compBoard, x, y);
+    this.dom.appendDot(x, y, outcome, this.compBoard.name);
+    if (sunk) {
+      this.dom.changeMessage(`You sunk my ${sunk}!`, '');
+    }
+    [outcome, sunk, x, y] = this.computer.takeTurn(this.playerBoard, x, y);
+    this.dom.appendDot(x, y, outcome, this.playerBoard.name);
+    if (sunk) {
+      this.dom.changeMessage(`I sunk your ${sunk}!`, '');
+    }
+    let winner = this.checkForWin(this.playerBoard, this.compBoard);
     if (winner) {
       this.dom.changeMessage(`${winner} wins!`, '');
       click.removeGridClicks(this.compBoard);
-    } else {
-      outcome = this.player.takeTurn(this.compBoard, x, y, this.dom);
-      this.dom.appendDot(x, y, outcome, this.compBoard.name);
-      [ outcome, x, y ] = this.computer.takeTurn(this.playerBoard, x, y, this.dom);
-      console.log(x, y);
-      this.dom.appendDot(x, y, outcome, this.playerBoard.name);
-
     }
   }
 
   checkForWin(pboard, cboard) {
-    let p = (pboard.reportAllSunk() === 5) ? 1 : 0; 
-    let c = (cboard.reportAllSunk() === 5) ? 1 : 0; 
+    let p = pboard.reportAllSunk() === 5 ? 1 : 0;
+    let c = cboard.reportAllSunk() === 5 ? 1 : 0;
 
     if (p === 1) {
       return 'Computer';
-    }
-    else if (c === 1) {
+    } else if (c === 1) {
       return 'Player';
     } else {
       return false;

@@ -48,23 +48,30 @@ class Gameboard {
 
   receiveAttack(x, y) {
     [x, y] = this.checkCoords(x, y);
+    let sunk;
 
     if (this.board[x][y] instanceof Ship) {
       let ship = this.board[x][y];
       this.board[x][y].hit();
-      if (ship.isSunk()) this.sunk.push(ship);
+      if (ship.isSunk()) {
+        this.sunk.push(ship);
+        sunk = ship.name;
+      }
       this.attempts.push([x, y]);
-      return 'hit';
+      return ['hit', sunk ];
     } else {
       if (this.board[x][y].ship !== null) {
         let ship = this.board[x][y].ship;
         this.board[x][y].ship.hit();
-        if (ship.isSunk()) this.sunk.push(ship);
+        if (ship.isSunk()) {
+          this.sunk.push(ship);
+          sunk = ship.name;
+        }
         this.attempts.push([x, y]);
-        return 'hit';
+        return ['hit', sunk ];
       } else {
         this.trackMiss(x, y);
-        return 'miss';
+        return ['miss', sunk ];
       }
     }
   }
