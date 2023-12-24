@@ -13,9 +13,7 @@ const dom = new DOM(container);
 dom.init();
 const game = new Game(dom);
 game.init();
-
 DragEvents();
-
 click.startGame(game);
 click.whaleClick();
 

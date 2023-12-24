@@ -6,6 +6,7 @@ exports.startGame = (game) => {
     'click',
     () => {
       game.start();
+      addGridClicks(game);
     },
     { once: true },
   );
@@ -37,14 +38,14 @@ exports.unWhaleClick = () => {
   }
 };
 
-exports.addGridClicks = (cboard, pboard, player, comp, dom, loop, win) => {
+const addGridClicks = (game) => {
   const squares = document.querySelectorAll('.computer-square');
   squares.forEach((square) => {
     square.addEventListener(
       'click',
       (e) => {
         const [x, y] = helpers.parseCoordString(e.target.dataset.gridNumber);
-        loop(cboard, pboard, player, comp, x, y, dom, win);
+        game.loop(x, y);
       },
       { once: true },
     );
