@@ -166,6 +166,8 @@ body {
 }
 
 .hit-piece {
+  position: sticky;
+  z-index: 4;
   width: 12px;
   height: 12px;
   border-radius: 100%;
