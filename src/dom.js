@@ -3,6 +3,7 @@ const rightW = require('./images/right-whale.jpg');
 const spermW = require('./images/sperm-whale.jpg');
 const humpW = require('./images/humpback.jpg');
 const orcaW = require('./images/orca.jpg');
+const helpers = require('./helpers');
 
 class DOM {
   constructor(container) {
@@ -234,13 +235,15 @@ class DOM {
     line2.textContent = two;
   }
 
-  appendDot(element, type) {
-    const className = `${type}-piece`;
+  appendDot(x, y, outcome, name) {
+    name = name.toLowerCase();
+    const button = helpers.getButton(x, y, name);
+    const className = `${outcome}-piece`;
     const piece = this.makeElement('div', [['class', className]]);
-    if (element.firstChild && element.firstChild.classList.contains('ship')) {
-      element.firstChild.firstChild.append(piece);
+    if (button.firstChild && button.firstChild.classList.contains('ship')) {
+      button.firstChild.firstChild.append(piece);
     } else {
-      element.appendChild(piece);
+      button.appendChild(piece);
     }
   }
 }

@@ -56,12 +56,16 @@ class Game {
 
   loop(x, y) {
     let winner = this.checkForWin(this.playerBoard, this.compBoard);
+    let outcome;
     if (winner) {
       this.dom.changeMessage(`${winner} wins!`, '');
       click.removeGridClicks(this.compBoard);
     } else {
-      this.player.takeTurn(this.compBoard, x, y, this.dom);
-      this.computer.takeTurn(this.playerBoard, x, y, this.dom);
+      outcome = this.player.takeTurn(this.compBoard, x, y, this.dom);
+      this.dom.appendDot(x, y, outcome, this.compBoard.name);
+      [ outcome, x, y ] = this.computer.takeTurn(this.playerBoard, x, y, this.dom);
+      this.dom.appendDot(x, y, outcome, this.playerBoard.name);
+
     }
   }
 

@@ -46,29 +46,25 @@ class Gameboard {
     return 1;
   }
 
-  receiveAttack(x, y, dom) {
+  receiveAttack(x, y) {
     [x, y] = this.checkCoords(x, y);
-    const lowerName = this.name.toLowerCase();
 
     if (this.board[x][y] instanceof Ship) {
       let ship = this.board[x][y];
       this.board[x][y].hit();
       if (ship.isSunk()) this.sunk.push(ship);
       this.attempts.push([x, y]);
-      let button = helpers.getButton(x, y, lowerName);
-      dom.appendDot(button, 'hit');
+      return 'hit';
     } else {
       if (this.board[x][y].ship !== null) {
         let ship = this.board[x][y].ship;
         this.board[x][y].ship.hit();
         if (ship.isSunk()) this.sunk.push(ship);
         this.attempts.push([x, y]);
-        let button = helpers.getButton(x, y, lowerName);
-        dom.appendDot(button, 'hit');
+        return 'hit';
       } else {
         this.trackMiss(x, y);
-        let button = helpers.getButton(x, y, lowerName);
-        dom.appendDot(button, 'miss');
+        return 'miss';
       }
     }
   }

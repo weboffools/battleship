@@ -6,16 +6,18 @@ class Player {
     this.name = name;
   }
 
-  takeTurn(board, x, y, dom) {
+  takeTurn(board, x, y) {
     if (board.name === 'Computer') {
-      board.receiveAttack(x, y, dom);
+      const outcome = board.receiveAttack(x, y);
       this.attempts.push([x, y]);
+      return outcome;
     } else {
       x = this.genRandomNum(10);
       y = this.genRandomNum(10);
       [x, y] = this.randomTurn(this.attempts, x, y);
-      board.receiveAttack(x, y, dom);
+      const outcome = board.receiveAttack(x, y);
       this.attempts.push([x, y]);
+      return [ outcome, x, y ];
     }
   }
 
